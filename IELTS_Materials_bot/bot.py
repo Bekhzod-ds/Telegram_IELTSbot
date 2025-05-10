@@ -16,9 +16,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def get_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("📤 Sending your IELTS mock test...")
-    await update.message.reply_document(document=PDF_LINK, filename="IELTS_Mock_Test.pdf")
-    await update.message.reply_audio(audio=AUDIO_LINK, filename="IELTS_Listen_Test.mp3")
-
+    await update.message.reply_document(document=open("IELTS_Mock_Test.pdf", "rb"))
+    await update.message.reply_audio(audio=open("IELTS_Listen_Test.mp3", "rb"))
+    
 if __name__ == "__main__":
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
